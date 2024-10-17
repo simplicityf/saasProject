@@ -1,6 +1,6 @@
 [build]
 builder = "DOCKERFILE"
-dockerfilePath = "./Dockerfile"
+dockerfilePath = "./DockerFile"
 watchPatterns = [
     "requirements.txt", 
     "src/**", 

@@ -49,7 +49,7 @@ def about_page(request, *args, **kwargs):
         "last_visit": page_qs.last() if page_qs.exists() else None,  # Getting the last visit if exists
     }
     
-    html_template = "about.html"
+    html_template = "home.html"
 
     PageVisit.objects.create()
     return render(request, html_template, my_context)

@@ -127,11 +127,11 @@ else:
     # Local static files settings
     STATIC_URL = '/static/'
     
+    # Define the vendor directory directly
     STATICFILES_VENDOR_DIR = BASE_DIR / "staticFiles/vendors"
-    STATICFILES_VENDOR_DIR = getattr(settings, 'STATICFILES_VENDOR_DIR')
 
-    # Ensure the directory exists
-    Path(STATICFILES_VENDOR_DIR).mkdir(parents=True, exist_ok=True) 
+    # Ensure the vendor directory exists
+    STATICFILES_VENDOR_DIR.mkdir(parents=True, exist_ok=True) 
     
     STATICFILES_DIRS = [
         BASE_DIR / "staticFiles",  # Local static directory

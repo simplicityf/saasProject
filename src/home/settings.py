@@ -108,6 +108,12 @@ USE_TZ = True
 
 # Static and Media file settings
 
+ # Define the vendor directory directly
+STATICFILES_VENDOR_DIR = BASE_DIR / "staticFiles/vendors"
+
+    # Ensure the vendor directory exists
+STATICFILES_VENDOR_DIR.mkdir(parents=True, exist_ok=True) 
+
 if ENVIRONMENT == 'production':
     # AWS S3 configuration for production
     AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID")

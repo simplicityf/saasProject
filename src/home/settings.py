@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # my-apps
     'visits',
+    'commands'
 ]
 
 MIDDLEWARE = [
@@ -107,19 +108,6 @@ if DATABASE_URL is not None:
         )
     }
 
-# Replace the DATABASES section of your settings.py with this
-# tmpPostgres = urlparse(config("DATABASE_URL", cast=str))
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': tmpPostgres.path[1],
-#         'USER': tmpPostgres.username,
-#         'PASSWORD': tmpPostgres.password,
-#         'HOST': tmpPostgres.hostname,
-#         'PORT': tmpPostgres.port,
-#     }
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -157,6 +145,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_BASE_DIR = BASE_DIR / "staticFiles"
+STATICFILES_BASE_DIR.mkdir(exist_ok=True, parents=True)
 STATICFILES_VENDOR_DIR = STATICFILES_BASE_DIR / "vendors"
 
 # source(s) for python manage,pf collectstatic

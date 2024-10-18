@@ -61,6 +61,9 @@ ENV AWS_BUCKET_NAME=${AWS_BUCKET_NAME}
 ARG AWS_S3_REGION_NAME
 ENV AWS_S3_REGION_NAME=${AWS_S3_REGION_NAME}
 
+ARG ENVIRONMENT
+ENV ENVIRONMENT=${ENVIRONMENT}
+
 # database isn't available during build
 # run any other commands that do not need the database
 # such as:

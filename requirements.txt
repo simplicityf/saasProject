@@ -6,3 +6,4 @@ dj-database-url
 requests
 django-storages[s3]
 boto3
+whitenoise==6.7.0

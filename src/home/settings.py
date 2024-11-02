@@ -119,6 +119,7 @@ if ENVIRONMENT == 'production':
     # WhiteNoise for static files
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     STATIC_URL = '/static/'  # WhiteNoise serves directly from here
+    STATIC_ROOT = BASE_DIR / "staticFiles"  # Directory for collected static files
 
     # Media files configuration for S3
     AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID")
@@ -137,15 +138,15 @@ else:
     # Ensure the vendor directory exists
     STATICFILES_VENDOR_DIR.mkdir(parents=True, exist_ok=True) 
     
-    STATICFILES_DIRS = [
+STATICFILES_DIRS = [
         BASE_DIR / "staticFiles",  # Local static directory
         STATICFILES_VENDOR_DIR,
     ]
-    STATIC_ROOT = BASE_DIR / "local-cdn"  # Directory to collect static files
+STATIC_ROOT = BASE_DIR / "local-cdn"  # Directory to collect static files
 
     # Media files settings for local development
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

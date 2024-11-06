@@ -50,8 +50,11 @@ SECRET_KEY = config("DJANGO_SECRET_KEY")
 DEBUG = config("DJANGO_DEBUG", cast=bool)
 
 ALLOWED_HOSTS = [
-    ".railway.app",  # Production host on Railway
+    ".railway.app" #'*'  # Production host on Railway
 ]
+
+
+CSRF_TRUSTED_ORIGINS = [".railway.app"]
 
 if DEBUG:
     ALLOWED_HOSTS += [

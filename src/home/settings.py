@@ -54,7 +54,7 @@ ALLOWED_HOSTS = [
 ]
 
 
-CSRF_TRUSTED_ORIGINS = ["https://saasproject-production-e61d.up.railway.app/accounts/login/"]
+CSRF_TRUSTED_ORIGINS = ["https://saasproject-production-e61d.up.railway.app"]
 
 if DEBUG:
     ALLOWED_HOSTS += [

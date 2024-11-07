@@ -16,6 +16,7 @@ from pathlib import Path
 import dj_database_url
 from django.conf import settings
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -58,7 +59,6 @@ CSRF_TRUSTED_ORIGINS = ["https://saasproject-production-e61d.up.railway.app"]
 
 if DEBUG:
     ALLOWED_HOSTS += [
-        "*"
         "127.0.0.1",
         "localhost"
     ]
@@ -199,6 +199,8 @@ else:
 
     # Ensure the vendor directory exists
     STATICFILES_VENDOR_DIR.mkdir(parents=True, exist_ok=True) 
+    
+    IPV6_ENABLED=False
     
 STATICFILES_DIRS = [
         BASE_DIR / "staticFiles",  # Local static directory

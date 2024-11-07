@@ -16,19 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from auth import views as auth_views
 from .views import home_page, about_page
-from decouple import config
+# from decouple import config
 
-ADMIN_USER_NAME = config("ADMIN_USER_NAME")
-ADMIN_PASSWORD = config("AWS_ACCESS_KEY_ID")
-ADMIN_USER_EMAIL = config("AWS_ACCESS_KEY_ID")
+# ADMIN_USER_NAME = config("ADMIN_USER_NAME")
+# ADMIN_PASSWORD = config("AWS_ACCESS_KEY_ID")
+# ADMIN_USER_EMAIL = config("AWS_ACCESS_KEY_ID")
 
-# Temporary superuser creation code
-if not User.objects.filter(username='ADMIN_USER_NAME').exists():
-    User.objects.create_superuser('ADMIN_USER_NAME', 'ADMIN_USER_EMAIL', 'ADMIN_PASSWORD')
-    print("Superuser created!")
+# # Temporary superuser creation code
+# if not User.objects.filter(username='ADMIN_USER_NAME').exists():
+#     User.objects.create_superuser('ADMIN_USER_NAME', 'ADMIN_USER_EMAIL', 'ADMIN_PASSWORD')
+#     print("Superuser created!")
 
 
 urlpatterns = [

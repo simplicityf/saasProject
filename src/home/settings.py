@@ -50,7 +50,7 @@ SECRET_KEY = config("DJANGO_SECRET_KEY")
 DEBUG = config("DJANGO_DEBUG", cast=bool)
 
 ALLOWED_HOSTS = [
-    ".railway.app" #'*'  # Production host on Railway
+    ".railway.app"  # Production host on Railway
 ]
 
 
@@ -58,6 +58,7 @@ CSRF_TRUSTED_ORIGINS = ["https://saasproject-production-e61d.up.railway.app"]
 
 if DEBUG:
     ALLOWED_HOSTS += [
+        "*"
         "127.0.0.1",
         "localhost"
     ]
@@ -140,7 +141,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Django Allauth Config
-# LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "/"
 ACCOUNT_AUTHENTICATION_METHOD="email"
 ACCOUNT_EMAIL_VERIFICATION= "mandatory"
 ACCOUNT_EMAIL_SUBJECT_PREFIX="[JUSTAPP]"

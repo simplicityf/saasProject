@@ -16,7 +16,6 @@ from pathlib import Path
 import dj_database_url
 from django.conf import settings
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -141,7 +140,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Django Allauth Config
-LOGIN_REDIRECT_URL = "/"
+# LOGIN_REDIRECT_URL = "/"
 ACCOUNT_AUTHENTICATION_METHOD="email"
 ACCOUNT_EMAIL_VERIFICATION= "mandatory"
 ACCOUNT_EMAIL_SUBJECT_PREFIX="[JUSTAPP]"
@@ -199,8 +198,6 @@ else:
 
     # Ensure the vendor directory exists
     STATICFILES_VENDOR_DIR.mkdir(parents=True, exist_ok=True) 
-    
-    IPV6_ENABLED=False
     
 STATICFILES_DIRS = [
         BASE_DIR / "staticFiles",  # Local static directory

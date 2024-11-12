@@ -74,12 +74,15 @@ INSTALLED_APPS = [
     'visits',
     'commands',
     'storages', 
+    'profiles',
     # For AWS S3 integration
     # third party apps
     "allauth_ui",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    'allauth.socialaccount.providers.google',
+    "allauth.socialaccount.providers.github",
     "widget_tweaks",
     "slippers",
 ]
@@ -160,7 +163,21 @@ AUTHENTICATION_BACKENDS = [
 
 # All auth setup
 # Provider specific settings
-SOCIALACCOUNT_PROVIDERS = {}
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'offline',
+        },
+        'OAUTH_PKCE_ENABLED': True,
+    },
+    'github': {
+        "VERIFIED_EMAIL": True,
+    }
+}
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'

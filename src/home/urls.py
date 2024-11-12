@@ -17,8 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from auth import views as auth_views
-from .views import home_page, about_page
-
+from .views import (home_page,
+                    about_page,
+                    pwd_protected_view,
+                    user_only_view,
+                    staff_only_view
+)
 
 urlpatterns = [
     path("", home_page,  name='home'),
@@ -26,5 +30,9 @@ urlpatterns = [
     path("register/", auth_views.register_view),
     path("about/", about_page),
     path('accounts/', include('allauth.urls')),
+    path('protected/user-only', user_only_view),
+    path('protected/staff-only', staff_only_view),
+    path('protected/', pwd_protected_view),
+    path('profiles/', include('profiles.urls')),
     path('admin/', admin.site.urls),
 ]

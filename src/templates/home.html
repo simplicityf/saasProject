@@ -4,6 +4,8 @@
 
 {% block content %}
 
+{% include 'base/messages.html' %}
+
 <h1>Welcome to the Home Page!</h1>
 <p> Page count {{ query_set_count }} </p>
 <p> Total visit count {{total_visit_count}} </p>

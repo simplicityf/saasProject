@@ -75,6 +75,8 @@ INSTALLED_APPS = [
     'commands',
     'storages', 
     'profiles',
+    'subscriptions',
+    'customers',
     # For AWS S3 integration
     # third party apps
     "allauth_ui",
@@ -175,7 +177,16 @@ SOCIALACCOUNT_PROVIDERS = {
         'OAUTH_PKCE_ENABLED': True,
     },
     'github': {
-        "VERIFIED_EMAIL": True,
+        'VERIFIED_EMAIL': True,
+        'SCOPE': [
+            'user',
+            'repo',
+            'read:org',
+        ],
+        'APP': {
+            'client_id': config('GITHUB_CLIENT_ID'),
+            'secret': config('GITHUB_CLIENT_SECRET'),
+        },
     }
 }
 

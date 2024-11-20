@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %} Profile -{{block.super}} {% endblock title %}
+
+{% block content %}
+
+{% include 'base/messages.html' %}
+
+{% comment %} {{ perms }} checking list of permission {% endcomment %}
+
+    {% comment %} If user is authorized to see other users list {% endcomment %}
+    {% if perms.auth or is_me %} 
+{% if perms.auth.view_user or is_me %}
+
+<h1> Profile </h1> 
+    <h1>{{instance.username}}!</h1>
+
+    <div>
+
+        {{ instance.first_name }} - {{instance.last_name}}
+      <p> Last Login -  {{instance.last_login}} </p>
+
+</div>
+
+
+
+{% endif %}
+
+{% else %}
+
+<h1>You are not authorized to see other users list.</h1>
+
+{% endif %}
+
+{% endblock content %}

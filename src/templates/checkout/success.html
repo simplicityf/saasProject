@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}  {{block.super}} {% endblock title %}
+
+{% block content %}
+
+{% include 'base/messages.html' %}
+
+<h1>Subscription Successful</h1>
+
+<div>
+    {{subscription}}
+</div>
+
+<div> 
+    {{checkout}}
+</div>
+
+{% endblock content %}

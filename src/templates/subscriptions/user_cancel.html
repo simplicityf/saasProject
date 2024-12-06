@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}our subscription {{block.super}} {% endblock title %}
+
+{% block content %}
+
+{% include 'base/messages.html' %}
+
+<a href="{{subscription_data.get_absolute_url}}"> Back </a>
+
+{% if subscription.isactive_sub_status %}
+ 
+<h1>Are sure you want to cancel your subscription {{ subscription_data.plan_name }}?</h1>
+
+<form action='' method="POST"> 
+     {% csrf_token %} 
+     <button> Yes </button>
+</form>
+
+{% else %}
+
+<h3> Sorry! You don't have any active subscription </h3>
+
+{% endif %}
+
+{% endblock content %}

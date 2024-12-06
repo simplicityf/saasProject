@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}our subscription {{block.super}} {% endblock title %}
+
+{% block content %}
+
+{% include 'base/messages.html' %}
+
+<h1>Your subscription</h1>
+
+{% comment %} {% for k,v in subscription_data.items %}
+<p> {{ k }}, {{ v }} </p>
+{% endfor %} {% endcomment %}
+ <p> Plan name: {{ subscription_data.plan_name }} </p>
+
+ <p> Status: {{ subscription_data.status | title }} </p>
+
+ <p> Start date: {{ subscription_data.current_period_start }} </p>
+
+ <p> End date: {{ subscription_data.curent_period_end | timeuntil }} </p>
+
+ <a href="{{ subscription_data.get_cancel_url }}"> Cancel subscription </a>
+
+{% endblock content %}

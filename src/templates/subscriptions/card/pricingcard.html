@@ -1,0 +1,19 @@
+{% comment %} Copy the pricing card here {% endcomment %}
+
+<h1>Starter:The head i mean {{object.display_sub_name}} </h1>
+
+<p>${{object.price}}
+    {{object.interval}} 
+    {% comment %} or {{object.get_interval_display}}  {% endcomment %}
+</p>
+
+{% if object.display_sub_subtitle %}
+<p>
+    {{object.display_sub_subtitle}} 
+</p>
+    {% endif %} 
+{% for feature in object.display_features_list %}
+<li> {{ feature }} </li>
+{% endfor %}
+
+<a href={{ object.get_checkout_urls }}> Select Plan</a>

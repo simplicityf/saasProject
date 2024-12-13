@@ -70,7 +70,7 @@ class SubscriptionPrice(models.Model):
         MONTHLY = 'month', 'Monthly'
         YEARLY = 'year', 'Yearly'
     
-    subscription = models.ForeignKey(Subscription, on_delete=models.SET_NULL, null=True)
+    subscription = models.ForeignKey(Subscription, on_delete=models.SET_NULL, null=True, blank=True)
     stripe_id = models.CharField(max_length=120, null=True, blank=True)
     interval = models.CharField(max_length=120, default=IntervalChoices.MONTHLY, choices= IntervalChoices.choices)
     price = models.DecimalField(max_digits=10, decimal_places=2, default=99.99)

@@ -37,12 +37,14 @@ def user_cancel_subscription_view(request,):
 
 
 def subscription_price_view(request, interval='month'):
+    # if not SubscriptionPrice.subscription.exists():
+    #     pass
     qs = SubscriptionPrice.objects.filter(featured=True)
     monthly_qs = SubscriptionPrice.IntervalChoices.MONTHLY
     yearly_qs = SubscriptionPrice.IntervalChoices.YEARLY
     object_list = qs.filter(interval=monthly_qs)
     url_path_name = "pricing_interval"
-    active=monthly_qs
+    active = monthly_qs
     monthly_url = reverse(url_path_name, kwargs={"interval": monthly_qs})
     yearly_url = reverse(url_path_name, kwargs={"interval": yearly_qs})
     if interval == yearly_qs:

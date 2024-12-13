@@ -85,7 +85,7 @@ def get_checkout_session(stripe_id, raw=True):
     )
     if raw:
         return response
-    return serialize_subscription_data(response)
+    return response.url
 
 def get_subscription(stripe_id, raw=True):
     response = stripe.Subscription.retrieve(

@@ -28,10 +28,10 @@ def profile_list_view(request):
 def profile_detail_view(request, username=None, *args, **kwargs):
     user = request.user
     
-    print("Has free permission",user.has_perm("subcriptions.free"),
-          "Has basic permission",user.has_perm("subcriptions.basic"),
-          "Has advance permission",user.has_perm("subcriptions.advance"),
-          "Has advance pro permission",user.has_perm("subcriptions.advance pro"))
+    # # print("Has free permission",user.has_perm("subcriptions.free"),
+    #       "Has basic permission",user.has_perm("subcriptions.basic"),
+    #       "Has advance permission",user.has_perm("subcriptions.advance"),
+    #       "Has advance pro permission",user.has_perm("subcriptions.advance pro"))
     
     # user_groups = user.groups.all()
     # print("User groups", user_groups)
@@ -44,6 +44,6 @@ def profile_detail_view(request, username=None, *args, **kwargs):
     context = {
         "object": profile_user_obj,
         "instance": profile_user_obj,
-        "is_me": is_me
+        "is_me": is_me,
     }
     return render(request, "profiles/detailuserprofile.html", context)

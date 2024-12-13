@@ -6,12 +6,15 @@
 
 {% include 'base/messages.html' %}
 
-<h1>Your subscription</h1>
+<h1  class="text-center">Your Subscription!</h1>
 
 {% comment %} {% for k,v in subscription_data.items %}
 <p> {{ k }}, {{ v }} </p>
 {% endfor %} {% endcomment %}
- <p> Plan name: {{ subscription_data.plan_name }} </p>
+
+{% comment %} {% if user_sub_obj %} {% endcomment %}
+
+ <p> Plan name: {{ subscription_data.plan_name }}  </p>
 
  <p> Status: {{ subscription_data.status | title }} </p>
 
@@ -20,5 +23,46 @@
  <p> End date: {{ subscription_data.curent_period_end | timeuntil }} </p>
 
  <a href="{{ subscription_data.get_cancel_url }}"> Cancel subscription </a>
+
+
+ 
+
+<div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+   <div class="flow-root">
+        <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+            <li class="py-3 sm:py-4">
+                <div class="flex items-center">
+                    
+                    <div class="flex-1 min-w-0 ms-4">
+                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                            Plan name: {{ subscription_data.plan_name }}
+                        </p>
+                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                            Status: {{ subscription_data.status | title }}
+                        </p>
+                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                            Start date: {{ subscription_data.current_period_start }}
+                        </p>
+                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                            End date: {{ subscription_data.curent_period_end | timeuntil }}
+                        </p>
+                    </div>
+                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                        <a type="button" href="{{ subscription_data.get_cancel_url }}" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Cancel Subscription</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+   </div>
+</div>
+
+
+ {% comment %} {% else %}
+ <div class="text-center mt-6">
+ <h3 class="text-black dark:text-white"> You don't have any active subscription </h3>
+ <p class="text-black"> Get started? <a href="{% url 'pricing' %}" class="text-blue-400"> Subscriptions Plan </a> </p>
+ </div>
+
+ {% endif %} {% endcomment %}
 
 {% endblock content %}

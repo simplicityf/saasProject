@@ -41,7 +41,7 @@ def checkout_redirect_view(request):
         customer_id=customer_stripe_id,
         success_url=success_url,
         cancel_url=cancel_url,
-        price_stripe_id=price_stripe_id,
+        price_stripe_id = price_stripe_id,
         raw=False
     )
     return redirect(url)

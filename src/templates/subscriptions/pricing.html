@@ -16,7 +16,7 @@
             <div class="flex justify-center">
                 <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 dark:text-gray-400">
                     <li class="me-2">
-                        <a href="{{ monthly_url }}" class="{% if active == monthly %}inline-block px-4 py-3 text-white bg-blue-600 rounded-lg active{% else %}inline-block px-4 py-3 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white{% endif %}" aria-current="page">Monthly</a>
+                        <a href="{{ monthly_url }}" class="{% if active == 'month' %}inline-block px-4 py-3 text-white bg-blue-600 rounded-lg active{% else %}inline-block px-4 py-3 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white{% endif %}" aria-current="page">Monthly</a>
                     </li>
                     <li class="me-2">
                         <a href="{{ yearly_url }}"  class="{% if active == 'year' %}inline-block px-4 py-3 text-white bg-blue-600 rounded-lg active{% else %}inline-block px-4 py-3 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white{% endif %}">Yearly</a>

@@ -7,7 +7,7 @@ from .models import Subscription, UserSubscription, SubscriptionPrice
 class SubscriptionPrice(admin.TabularInline):
     model = SubscriptionPrice
     readonly_fields = ['stripe_id']
-    can_delete = False
+    can_delete = True
     extra = 0
 
 class SubscriptionAdmin(admin.ModelAdmin):

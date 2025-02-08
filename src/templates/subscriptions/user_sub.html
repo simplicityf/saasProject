@@ -14,17 +14,10 @@
 
 {% comment %} {% if user_sub_obj %} {% endcomment %}
 
- <p> Plan name: {{ subscription_data.plan_name }}  </p>
-
- <p> Status: {{ subscription_data.status | title }} </p>
-
- <p> Start date: {{ subscription_data.current_period_start }} </p>
-
- <p> End date: {{ subscription_data.curent_period_end | timeuntil }} </p>
-
- <a href="{{ subscription_data.get_cancel_url }}"> Cancel subscription </a>
-
-
+<form action='' method="POST"> 
+    {% csrf_token %} 
+    <button class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900"> Refresh Subscription </button>
+</form>
  
 
 <div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">

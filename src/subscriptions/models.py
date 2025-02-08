@@ -1,5 +1,5 @@
 import helpers.billing
-
+from django.db.models import Q
 from django.db import models
 from django.contrib.auth.models import Group, Permission
 from django.db.models.signals import post_save
@@ -70,7 +70,7 @@ class SubscriptionPrice(models.Model):
         MONTHLY = 'month', 'Monthly'
         YEARLY = 'year', 'Yearly'
     
-    subscription = models.ForeignKey(Subscription, on_delete=models.SET_NULL, null=True, blank=True)
+    subscription = models.ForeignKey(Subscription, on_delete=models.CASCADE, null=True, blank=True)
     stripe_id = models.CharField(max_length=120, null=True, blank=True)
     interval = models.CharField(max_length=120, default=IntervalChoices.MONTHLY, choices= IntervalChoices.choices)
     price = models.DecimalField(max_digits=10, decimal_places=2, default=99.99)
@@ -152,6 +152,30 @@ class SubscriptionStatus(models.TextChoices):
     UNPAID= 'unpaid', 'Unpaid'
     PAUSED= 'paused', 'Paused'
 
+class UserSubscriptionQuerySet(models.QuerySet):
+    def by_active_trialing(self):
+        active_qs_lookup = (
+            Q(status = SubscriptionStatus.ACTIVE) |
+            Q(status = SubscriptionStatus.TRIALING)
+        )
+        return self.filter(active_qs_lookup)
+    
+    def by_user_ids(self, user_ids=None):
+        if isinstance(user_ids, list):
+            return self.filter(user_id__in=user_ids)
+        elif isinstance(user_ids, int):
+            return self.filter(user_id__in=[user_ids])
+        elif isinstance(user_ids, str):
+            return self.filter(user_id__in=[user_ids])
+        return self
+
+class UserSubscriptionManager(models.Manager):
+    def get_queryset(self):
+        return UserSubscriptionQuerySet(self.model, using=self._db)
+    
+    # def by_user_ids(self, user_ids=None):
+    #     return self.get_queryset().by_user_ids(user_ids=user_ids)
+
 class UserSubscription(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE) # if user is deleted, their subscription is deleted as well
     subscription = models.ForeignKey(Subscription, on_delete=models.SET_NULL, null=True, blank=True) # one-to-one relationship with subscription model
@@ -163,6 +187,8 @@ class UserSubscription(models.Model):
     current_period_end = models.DateTimeField(auto_now=False, auto_now_add=False, blank=True, null=True) #subscription ended
     cancel_at_period_end = models.BooleanField(default=False)
     status = models.CharField(max_length=20, choices=SubscriptionStatus.choices, null=True, blank=True) #setting current status
+    
+    objects = UserSubscriptionManager()
     
     def get_absolute_url(self):
         return reverse("user_subscription")
